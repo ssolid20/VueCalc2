@@ -1,7 +1,7 @@
 {
     "name": "Advanced Calculator",
     "short_name": "Advanced Calculator",
-    "start_url": "./public/index.html",
+    "start_url": "./dist/index.html",
     "display": "standalone",
     "background_color": "#adc1e2",
     "theme_color": "#adc1e2",
