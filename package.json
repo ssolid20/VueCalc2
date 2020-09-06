@@ -1,0 +1,40 @@
+{
+  "name": "calc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "start": "node server.js",
+    "lambda-serve":"netlify-lambda serve functions",
+    "lambda-build":"netlify-lambda build functions"
+  },
+  "dependencies": {
+    "@growthbunker/vuedarkmode": "^0.5.56",
+    "axios": "^0.19.2",
+    "compression": "^1.7.4",
+    "core-js": "^3.6.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.1.0",
+    "mathjs": "^7.1.0",
+    "netlify-lambda": "^2.0.1",
+    "nodemon": "^2.0.4",
+    "register-service-worker": "^1.7.1",
+    "vue": "^2.6.11",
+    "vue-axios": "^2.1.5",
+    "vue-router": "^3.4.3",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-pwa": "^4.5.4",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "description": "## Project setup ``` npm install ```",
+  "main": "babel.config.js",
+  "author": "",
+  "license": "ISC"
+}
