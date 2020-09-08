@@ -249,7 +249,7 @@ methods: {
         this.showAnswerPart1(i1)
         params.append(y,'value');
         //console.log(params)
-        this.axios.post("/.netlify/functions/topython",y)
+        this.axios.post("/.netlify/functions/topython",i1)
         .then(response => {
             //console.log(response.data)
             this.showAnswerPart3(response.data)
