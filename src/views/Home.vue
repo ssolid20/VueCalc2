@@ -1,3 +1,4 @@
+
 <template>
   <div >
     <div  class='container' >
@@ -39,7 +40,7 @@
                     <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}" v-on:mousedown.prevent="putText(8)" >8</button>
                     <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  v-on:mousedown.prevent="putText(9)" >9</button>
                     <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  v-on:mousedown.prevent="putText('+')" >+</button>
-                    <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  id="special7" v-on:mousedown.prevent="special3" > < </button>
+                    <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  id="special7" v-on:mousedown.prevent="putText('i')" > i </button>
                     <button   v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="putText3('In()')" >In(x)</button>
                     <button   v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="putText5('log( ,10 )')" >log(x)</button>
                     <button  v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="deriv">dy/dx</button>
@@ -51,11 +52,11 @@
                     <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  v-on:mousedown.prevent="putText(0)" >0</button>
                     <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  v-on:mousedown.prevent="putText(',')" >,</button>
                     <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  v-on:mousedown.prevent="putText('-')">-</button>
-                    <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  id ="special8" v-on:mousedown.prevent="special4" > > </button>
+                    <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  id ="special8" v-on:mousedown.prevent="putText('=')" > = </button>
 
-                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText('∫ [  ,  ]dx')" >∫</button>                  
-                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText4('lim[ ,  ]')">lim</button>
+                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText('∫ [  ,  ]dx')" >∫[x,y]</button> 
                     <button  v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="solve">Solve</button>
+                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="calcLimit">∫</button>
                     <button  v-bind:class="{ control: !this.$store.state.count, control2:this.$store.state.count}" v-on:mousedown.prevent="cancelText" v-on:dblclick.prevent="cancelEv">
                         <span class="material-icons " >
                             backspace
@@ -181,14 +182,14 @@ methods: {
         if (this.changeButtons===false) {this.putText(')')}
         else{this.putText(']')}
     },
-    special3:function(){
+    /*special3:function(){
         if (this.changeButtons===false) {this.putText('<')}
         else{this.putText('⩽')}
     },
     special4:function(){
         if (this.changeButtons===false) {this.putText('>')}
         else{this.putText('⩾')}
-    },
+    },*/
     special5:function(){
         if (this.changeButtons===false) {this.putText4('sin( deg)')}
         else{this.putText5('asin()')}
@@ -206,15 +207,15 @@ methods: {
             this.changeButtons=true
             let x = document.querySelector('#special1')
             let x1 = document.querySelector('#special2')
-            let x2 = document.querySelector('#special7')
-            let x3 = document.querySelector('#special8')
+           /* let x2 = document.querySelector('#special7')
+            let x3 = document.querySelector('#special8')*/
             let x4 = document.querySelector('#special4')
             let x5 = document.querySelector('#special5')
             let x6 = document.querySelector('#special6')
             x.innerText= '['
             x1.innerText= ']'
-            x2.innerText='⩽'
-            x3.innerText='⩾'
+            /*x2.innerText='⩽'
+            x3.innerText='⩾'*/
             x4.innerText='asin(x)'
             x5.innerText='acos(x)'
             x6.innerText='atan(x)'
@@ -224,15 +225,15 @@ methods: {
             this.changeButtons=false
             let x = document.querySelector('#special1')
             let x1 = document.querySelector('#special2')
-            let x2 = document.querySelector('#special7')
-            let x3 = document.querySelector('#special8')
+            /*let x2 = document.querySelector('#special7')
+            let x3 = document.querySelector('#special8')*/
             let x4 = document.querySelector('#special4')
             let x5 = document.querySelector('#special5')
             let x6 = document.querySelector('#special6')
             x.innerText= '('
             x1.innerText= ')'
-            x2.innerText='<'
-            x3.innerText='>'
+            /*x2.innerText='<'
+            x3.innerText='>'*/
             x4.innerText='sin(x)'
             x5.innerText='cos(x)'
             x6.innerText='tan(x)'
@@ -243,16 +244,26 @@ methods: {
         let i1 = this.$refs.input.value
         let i =this.transformPython(i1)
         chatMessages.scrollTop = chatMessages.scrollHeight;
-        let y = `solve((${i}))`
+        let y = `roots(${i})`
         const params = new URLSearchParams();
         this.showAnswerPart1('solving... ')
         this.showAnswerPart1(i1)
         params.append(y,'value');
         //console.log(params)
-        this.axios.post("/.netlify/functions/topython",i1)
+        this.axios.post("http://localhost:9000/.netlify/functions/topython",y)
         .then(response => {
+            if (response.data === "Couldn't regonise problem or there are no solutions, try again") {this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
+            else {
+            let r = response.data.toString()/*.toString().split(',')*/
+            r= r.replace('[',' ')
+            r = r.replace(']',' ')
+            r= r.toString().split(',')
+            r.forEach( g => {
+                g = math.evaluate(g)
+                g = math.round(g,5)
+                this.showAnswerPart3(g)
+            })}
             //console.log(response.data)
-            this.showAnswerPart3(response.data)
         }).catch((err) => {
             console.log(err)})
     },
@@ -284,33 +295,30 @@ methods: {
           const chatMessages = document.querySelector('#showtime');
           let y1 =val
           y1 = this.transformPython(y1)
-          y1 = y1.replace('[',',(x,')
-          y1 = y1.replace('∫','Integral(')
-          y1 = y1.replace(']dx',')).doit()')
-          y1 = y1.replace(/∞/g,"S.Infinity")
+          y1 = y1.replace('[',',x,')
+          y1 = y1.replace('∫','defint(')
+          y1 = y1.replace(']dx',')')
           //console.log(y1)
           this.showAnswerPart1(`Calculating...`)
           this.showAnswerPart1(val)
           params.append(y1,'value');
-            this.axios.post("/.netlify/functions/topython",y1)
+            this.axios.post("http://localhost:9000/.netlify/functions/topython",y1)
             .then(response => {
             this.showAnswerPart2(response.data)
             }).catch((err) => {
                 console.log(err)})
       },
-      calcLimit:function(val) {
+      calcLimit:function() {
           const chatMessages = document.querySelector('#showtime');
           const params = new URLSearchParams();
-          let y1 =val
+          let y = this.$refs.input.value
+          let y1 = y
           y1 =this.transformPython(y1)
-          y1 = y1.replace(',',',x,')
-          y1 =y1.replace('lim[','Limit(');
-          y1 = y1.replace(']',').doit()')
-          y1 = y1.replace(/∞/g,"S.Infinity")
+          let f = `integral(${y1})`
           this.showAnswerPart1(`Calculating...`)
-          this.showAnswerPart1(val)
+          this.showAnswerPart1(`indefinite integral of ${y}`)
           params.append(y1,'value');
-            this.axios.post("/.netlify/functions/topython",y1)
+            this.axios.post("http://localhost:9000/.netlify/functions/topython",f)
             .then(response => {
             this.showAnswerPart2(response.data)
         }).catch((err) => {
@@ -326,13 +334,11 @@ methods: {
         let u='';
         if (r == '') {}
         else if (r.includes('∫')) {this.calcIntegral(r)}
-        else if (r.includes('lim')) {this.calcLimit(r)}
+        /*else if (r.includes('lim')) {this.calcLimit(r)}*/
         else {
         r = this.transform(r)
         try { u = math.evaluate(r);
-            if(Number.isInteger(u)){
-                u=u
-            }else{u=u.toFixed(5)}
+            u = math.round(u,5)
             u=u.toString()
             u=this.transformBack(u)
             r=this.transformBack(r)
@@ -370,18 +376,21 @@ methods: {
       },//Integral(x^2 ,(x,0,2)).doit()
       transformPython:function(val) {
         let a =val
-        a = a.replace('^','**')
+        //a = a.replace('^','**')
         //a = a.replace(/∞/g,"S.Infinity")
         a = a.replace(/In/g,'log')
-        a = a.replace(/π/g,'math.pi')
-        a = a.replace(/e/g, 'math.e')
-        a = a.replace(/{/g,'sympy.factorial(')
+        a = a.replace(/atan/g,'arctan')
+        a = a.replace(/asin/g,'arcsin')
+        a = a.replace(/acos/g,'arccos')
+
+        a = a.replace(/π/g,'3.14')
+        a = a.replace(/e/g, '2.718')
+        a = a.replace(/{/g,'factorial(')
         a =a.replace(/}!/g,')')
-        a = a.replace(/√/g,'sympy.sqrt')
+        a = a.replace(/√/g,'sqrt')
         a = a.replace(/⩾/g,'>=')
         a = a.replace(/⩽/g,'<=')
-        a = a.replace('^','**')
-        a = a.replace('^','**')
+
 
         //a = a.replace(/logtegral/g,'Integral')
         //a = a.replace(/Intmath.egral/g,'Integral')
