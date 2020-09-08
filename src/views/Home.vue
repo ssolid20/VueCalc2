@@ -250,7 +250,7 @@ methods: {
         this.showAnswerPart1(i1)
         params.append(y,'value');
         //console.log(params)
-        this.axios.post("http://localhost:9000/.netlify/functions/topython",y)
+        this.axios.post("/.netlify/functions/topython",y)
         .then(response => {
             if (response.data === "Couldn't regonise problem or there are no solutions, try again") {this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
             else {
@@ -302,7 +302,7 @@ methods: {
           this.showAnswerPart1(`Calculating...`)
           this.showAnswerPart1(val)
           params.append(y1,'value');
-            this.axios.post("http://localhost:9000/.netlify/functions/topython",y1)
+            this.axios.post("/.netlify/functions/topython",y1)
             .then(response => {
             this.showAnswerPart2(response.data)
             }).catch((err) => {
@@ -318,7 +318,7 @@ methods: {
           this.showAnswerPart1(`Calculating...`)
           this.showAnswerPart1(`indefinite integral of ${y}`)
           params.append(y1,'value');
-            this.axios.post("http://localhost:9000/.netlify/functions/topython",f)
+            this.axios.post("/.netlify/functions/topython",f)
             .then(response => {
             this.showAnswerPart2(response.data)
         }).catch((err) => {
