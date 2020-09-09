@@ -257,11 +257,15 @@ methods: {
             let r = response.data.toString()/*.toString().split(',')*/
             r= r.replace('[',' ')
             r = r.replace(']',' ')
-            r=r.replace(/.../g,' ')
             r= r.toString().split(',')
-            r.forEach( j => {
-                j=j.replace(/.../g,' ')
-                this.showAnswerPart3(j)
+            r.forEach( g => {
+                let v = g.toString()
+                v=v.replace('...', ' ')
+                v=v.replace('...', ' ')
+                v=v.replace('...', ' ')
+                v=v.replace('...', ' ')
+                v=v.replace('...', ' ')
+                this.showAnswerPart3(v)
             })}
             //console.log(response.data)
         }).catch((err) => {
