@@ -244,7 +244,7 @@ methods: {
         let i1 = this.$refs.input.value
         let i =this.transformPython(i1)
         chatMessages.scrollTop = chatMessages.scrollHeight;
-        let y = `roots(${i})`
+        let y = `nroots(${i})`
         const params = new URLSearchParams();
         this.showAnswerPart1('solving... ')
         this.showAnswerPart1(i1)
