@@ -257,10 +257,11 @@ methods: {
             let r = response.data.toString()/*.toString().split(',')*/
             r= r.replace('[',' ')
             r = r.replace(']',' ')
+            r=r.replace(/.../g,' ')
             r= r.toString().split(',')
-            r.forEach( g => {
-            
-                this.showAnswerPart3(g)
+            r.forEach( j => {
+                j=j.replace(/.../g,' ')
+                this.showAnswerPart3(j)
             })}
             //console.log(response.data)
         }).catch((err) => {
@@ -509,7 +510,6 @@ methods: {
             node.id='Output' ;
             let o = document.querySelectorAll('#Output');
             node.className = this.$store.state.output;
-            //o.className = (!this.$store.state.count) ? "output":"output1"
             var textnode = document.createTextNode(val2);         
             node.appendChild(textnode); 
             node.onclick=function() {
