@@ -257,11 +257,9 @@ methods: {
             let r = response.data.toString()/*.toString().split(',')*/
             r= r.replace('[',' ')
             r = r.replace(']',' ')
-            r= r.replace(/.../g,'')
             r= r.toString().split(',')
             r.forEach( g => {
-                /*g = math.evaluate(g)
-                g = math.round(g,5)*/
+            
                 this.showAnswerPart3(g)
             })}
             //console.log(response.data)
