@@ -244,29 +244,20 @@ methods: {
         let i1 = this.$refs.input.value
         let i =this.transformPython(i1)
         chatMessages.scrollTop = chatMessages.scrollHeight;
-        let y = `nroots(${i})`
+        let y = `solve(${i})`
         const params = new URLSearchParams();
         this.showAnswerPart1('solving... ')
         this.showAnswerPart1(i1)
         params.append(y,'value');
         //console.log(params)
-        this.axios.post("/.netlify/functions/topython",y)
+        this.axios.post("https://flaskbro.herokuapp.com/python",y)
         .then(response => {
             if (response.data === "Couldn't regonise problem or there are no solutions, try again") {this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
             else {
             let r = response.data.toString()/*.toString().split(',')*/
-            r= r.replace('[',' ')
-            r = r.replace(']',' ')
-            r= r.toString().split(',')
-            r.forEach( g => {
-                let v = g.toString()
-                v=v.replace('...', ' ')
-                v=v.replace('...', ' ')
-                v=v.replace('...', ' ')
-                v=v.replace('...', ' ')
-                v=v.replace('...', ' ')
-                this.showAnswerPart3(v)
-            })}
+
+                this.showAnswerPart3(r)
+            }
             //console.log(response.data)
         }).catch((err) => {
             console.log(err)})
