@@ -1,4 +1,5 @@
 
+
 <template>
   <div >
     <div  class='container' >
@@ -20,7 +21,7 @@
                     <button id ="special2" v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  v-on:mousedown.prevent="special2"  >)</button>
                                                                                                                                                 <!-- putText('π')-->
             <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" id= 'special10' v-on:mousedown.prevent="special10" >π</button>
-          <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText('e')">e</button>
+          <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" id= 'special11' v-on:mousedown.prevent="special11">e</button>
         </div>        
                 <div class="b1 row">
                     <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}" v-on:mousedown.prevent="putText('4')" >4</button>
@@ -212,6 +213,10 @@ methods: {
         if (this.changeButtons===false) {this.putText('π')}
         else{this.putText('i')}
     },
+    special11:function(){
+        if (this.changeButtons===false) {this.putText('e')}
+        else{this.putText2('|()|')}
+    },
     chbuttons:function(){
         if (this.changeButtons===false) {
             this.changeButtons=true
@@ -223,6 +228,7 @@ methods: {
             let x5 = document.querySelector('#special5')
             let x6 = document.querySelector('#special6')
             let x7 = document.querySelector('#special10')
+            let x8 = document.querySelector('#special11')
             x.innerText= '['
             x1.innerText= ']'
             x2.innerText='⩽'
@@ -230,7 +236,8 @@ methods: {
             x4.innerText='asin(x)'
             x5.innerText='acos(x)'
             x6.innerText='atan(x)'
-            x7.innerText='i'
+            x7.innerText='i';
+            x8.innerText='|    |'
 
         }
         else {
@@ -243,6 +250,7 @@ methods: {
             let x5 = document.querySelector('#special5')
             let x6 = document.querySelector('#special6')
             let x7 = document.querySelector('#special10')
+            let x8 = document.querySelector('#special11')
             x.innerText= '('
             x1.innerText= ')'
             x2.innerText='<'
@@ -251,6 +259,7 @@ methods: {
             x5.innerText='cos(x)'
             x6.innerText='tan(x)'
             x7.innerText='π'
+            x8.innerText='e'
         }
     },
     solve :function(){
@@ -276,6 +285,8 @@ methods: {
             let r = response.data.toString()/*.toString().split(',')*/
             r= r.replace('[',' ')
             r = r.replace(']',' ')
+            r= r.replace('{',' ')
+            r = r.replace('}',' ')
             r= r.toString().split(',')
             r.forEach( g => {
                 g = this.transformBack(g)
@@ -375,6 +386,7 @@ methods: {
         else if (r.includes('lim')) {this.calcLimit(r)}
         else {
         r = this.transform(r)
+        //console.log(r)
         try { u = math.evaluate(r);
             u = math.round(u,5)
             u=u.toString()
@@ -434,7 +446,12 @@ methods: {
         a = a.replace(/⩾/g,'>=')
         a = a.replace(/⩽/g,'<=')
         a = a.replace(/slog/g,'sin')
-
+        a=a.replace('|(','Abs(')
+        a =a.replace(')|',')')
+        a=a.replace('|(','Abs(')
+        a =a.replace(')|',')')
+        a=a.replace('|(','Abs(')
+        a =a.replace(')|',')')
 
         //a = a.replace(/logtegral/g,'Integral')
         //a = a.replace(/Intmath.egral/g,'Integral')
@@ -442,7 +459,7 @@ methods: {
         return a 
       },
       transformLight:function(val) {
-          let r = val
+        let r = val
         if (r.includes('π'))  {
             r = r.replace(/π/g,'pi')}
         if (r.includes('√')) {
@@ -453,11 +470,24 @@ methods: {
             }
         if (r.includes('{')) {r= r.replace(/{/g,'factorial(')}
         if (r.includes('}!')) {r =r.replace(/}!/g,')')}
+        r=r.replace('|(','abs(')
+        r =r.replace(')|',')')
+        r=r.replace('|(','abs(')
+        r =r.replace(')|',')')
+        r=r.replace('|(','abs(')
+        r =r.replace(')|',')')
+
         
         return r
       },
       transform:function(val) {
         let r = val
+        r=r.replace('|(','abs(')
+        r =r.replace(')|',')')
+        r=r.replace('|(','abs(')
+        r =r.replace(')|',')')
+        r=r.replace('|(','abs(')
+        r =r.replace(')|',')')
         if (r.includes('π'))  {
             r = r.replace(/π/g,'pi')
             }
