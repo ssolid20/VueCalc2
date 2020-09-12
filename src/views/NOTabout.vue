@@ -23,13 +23,12 @@
         <strong v-bind:class="{black: !this.$store.state.count, white:this.$store.state.count}">Note: write your equation in the way that it equals to 0 or you will get an error </strong>
         <strong v-bind:class="{black: !this.$store.state.count, white:this.$store.state.count}">Note: solving equations or inequalities may take some time </strong>
         <p v-bind:class="{black: !this.$store.state.count, white:this.$store.state.count}">If you want to solve integral write your function after '∫' sign. In case of indefinite integral
-          leave '[ ]' brackets empty , but in case of definite integral replace 'lb' sign with number that you
-          want to use as lower bound and replace 'ub' sign with number that you want to use as upper bound
+          leave '[ ]' brackets empty , but in case of definite integral write two numbers separating them by ' , ' first number will be lower bound ,second number will be upper bound
         </p>
         <strong v-bind:class="{black: !this.$store.state.count, white:this.$store.state.count}">Note: solving integrals may take some time </strong>
         <p v-bind:class="{black: !this.$store.state.count, white:this.$store.state.count}">
           If you want to find some limit just write in '[ ]' brackets ,at first function and after ',' sign,
-          replace '->x' sign with number to which function aims
+          number to which function aims
         </p> 
         <strong v-bind:class="{black: !this.$store.state.count, white:this.$store.state.count}">Note: finding limits may take some time </strong>
 
