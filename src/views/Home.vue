@@ -342,7 +342,7 @@ methods: {
                 this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
             else {
             let r  = response.data
-            r = math.round(r,5)
+            //r = math.round(r,5)
             this.showAnswerPart2(r)
             }
             }).catch((err) => {
@@ -366,7 +366,7 @@ methods: {
             if(response.data==='∞') {this.showAnswerPart2(response.data)}
             else {
             let r  = response.data
-            r = math.round(r,5)
+           // r = math.round(r,5)
             this.showAnswerPart2(r)}
         }).catch((err) => {
             console.log(err)})
