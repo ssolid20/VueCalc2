@@ -141,7 +141,6 @@ export default {
         output:this.$store.state.output
       }
   },
-
   mounted(){
     if(window.innerWidth <= 600){
         document.getElementById("input2").setAttribute("readonly", "true");
@@ -239,7 +238,6 @@ methods: {
             x6.innerText='atan(x)'
             x7.innerText='i';
             x8.innerText='||'
-
         }
         else {
             this.changeButtons=false
@@ -322,7 +320,6 @@ methods: {
             this.showAnswerPart1(r)
             let u = "Couldn't regonise problem or there are no solutions, try again"
             this.showAnswerPart2(u)
-
         }*/
        
       },
@@ -399,7 +396,6 @@ methods: {
         }
         catch(err) {u = "Couldn't regonise problem or there are no solutions, try again";
             this.showAnswerPart1(c)
-
             this.$refs.input.value=''
             var node1 = document.createElement("LI"); 
             node1.id='error' 
@@ -454,7 +450,6 @@ methods: {
         a=a.replace('|(','Abs(')
         a =a.replace(')|',')')
         a = a.replace('lIm','lim')
-
         //a = a.replace(/logtegral/g,'Integral')
         //a = a.replace(/Intmath.egral/g,'Integral')
         //a = a.replace(/Trumath.e/g,'True')
@@ -478,7 +473,6 @@ methods: {
         r =r.replace(')|',')')
         r=r.replace('|(','abs(')
         r =r.replace(')|',')')
-
         
         return r
       },
@@ -511,7 +505,6 @@ methods: {
         if (r.includes('{')) {r= r.replace(/{/g,'factorial(')}
         if (r.includes('}!')) {r =r.replace(/}!/g,')')}
         
-
         return r
       },
       transformBack:function(val) {
@@ -549,7 +542,6 @@ methods: {
                 } 
             document.getElementById("messages").appendChild(node);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-
       },
       showAnswerPart2:function(val2){
             const chatMessages = document.querySelector('#showtime');
@@ -607,7 +599,6 @@ methods: {
             document.getElementById("messages").appendChild(node);
             chatMessages.scrollTop = chatMessages.scrollHeight;
       },
-
       putText:function(val) {
             //this.counter +=1
             let i= this.$refs.input
@@ -710,7 +701,6 @@ methods: {
             this.caret=caretPos
             this.$refs.input.setSelectionRange(y.length,y.length)
         },
-
         cancelEv:function() {
             this.$refs.input.value= "";
         }, 
@@ -745,7 +735,6 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -758,7 +747,6 @@ methods: {
     color: #333;
     background: #eaeff6;
     width: 11%;
-
 }
 .int2{
     display: inline-block;
@@ -779,8 +767,6 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
-
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -819,8 +805,6 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
-
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -832,7 +816,6 @@ methods: {
     border-bottom: 1px solid #738dc3;
     width: 11%;
 }
-
 .control2{
     display: inline-block;
     font-weight: 400;
@@ -857,7 +840,6 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -896,8 +878,6 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
-
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -935,7 +915,6 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -973,7 +952,6 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -987,7 +965,6 @@ methods: {
     background: #eaeff6;
     width: 11%;
   }
-
 .b1{text-align: center;}
 .buttons{background-color: #c7d2e7;}
 .buttons1{background-color: #1A202C;}
@@ -1025,7 +1002,6 @@ methods: {
     border-right:2px solid #adc1e2 ;
     /*border-bottom: 2px solid #adc1e2;*/
     border-bottom: 2px solid #adc1e2;
-
     border-radius: 3px;
     width: 100%; 
 }
@@ -1061,7 +1037,6 @@ methods: {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-
     background-color: white;
     margin-left:0 auto;
     margin-right:0 auto;
@@ -1082,7 +1057,6 @@ methods: {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-
     background-color:#272727 ;
     margin-left:0 auto;
     margin-right:0 auto;
@@ -1090,9 +1064,7 @@ methods: {
     border-color: aliceblue;
     text-align: center;   
 }
-
 @media screen and (max-width: 600px) {
-
     html{
         font-size: 16px;
     }
@@ -1133,7 +1105,6 @@ methods: {
         font-size: 60%;
         width: 11%;
     }
-
     .special{
         border:0px;
         margin-bottom: 0.1%;
@@ -1158,13 +1129,11 @@ methods: {
         justify-content: center;
         font-size: 60%;
         width: 11%;
-
     }
     .container {
         padding-right:0%;
         padding-left: 0%;
     }
-
     .app2{
         width: 100% ;
         display: flex;
@@ -1177,9 +1146,7 @@ methods: {
         flex-direction: column;
         height: 94.5vh;    
         border-bottom: 0;
-
     }
-
     .showtime{
         flex-grow: 3;
         height: 242px;
