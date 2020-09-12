@@ -365,7 +365,7 @@ methods: {
             this.axios.post("https://flaskbro.herokuapp.com/python",y1)
             .then(response => {
             if (response.data === "Couldn't regonise problem or there are no solutions, try again") {this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
-            if(response.data==='∞') {this.showAnswerPart2(response.data)}
+            else if(response.data==='∞') {this.showAnswerPart2(response.data)}
             else {
             let r  = response.data
             //r = math.round(r,5)
