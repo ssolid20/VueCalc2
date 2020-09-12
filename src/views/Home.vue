@@ -344,7 +344,7 @@ methods: {
                 this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
             else {
             let r  = response.data
-            //r = math.round(r,5)
+            r = math.round(r,7)
             this.showAnswerPart2(r)
             }
             }).catch((err) => {
