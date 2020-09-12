@@ -237,7 +237,7 @@ methods: {
             x5.innerText='acos(x)'
             x6.innerText='atan(x)'
             x7.innerText='i';
-            x8.innerText='|    |'
+            x8.innerText='||'
 
         }
         else {
