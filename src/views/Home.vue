@@ -356,6 +356,7 @@ methods: {
           let y1 =val
           y1 =this.transformPython(y1)
           y1 = y1.replace(',',',x,')
+          y1 = y1.replace('lIm','lim')
           y1 =y1.replace('lim[','Limit(');
           y1 = y1.replace(']',').doit()')
           y1 = y1.replace(/∞/g,"S.Infinity")
@@ -452,7 +453,7 @@ methods: {
         a =a.replace(')|',')')
         a=a.replace('|(','Abs(')
         a =a.replace(')|',')')
-
+        a = a.replace(/lIm/g, 'lim')
         //a = a.replace(/logtegral/g,'Integral')
         //a = a.replace(/Intmath.egral/g,'Integral')
         //a = a.replace(/Trumath.e/g,'True')
