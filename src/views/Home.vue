@@ -331,9 +331,9 @@ methods: {
           let y1 =val
           //Integral(x^2 ,(x,0,2)).doit()
           y1 = this.transformPython(y1)
-          y1 = y1.replace('[',',(x,')
-          y1 = y1.replace('∫','Integral(')
-          y1 = y1.replace(']',')).doit()')
+          y1 = y1.replace(/[/g,',(x,')
+          y1 = y1.replace(/∫/g,'Integral(')
+          y1 = y1.replace(/]/g,')).doit()')
           //console.log(y1)
           this.showAnswerPart1(`Calculating...`)
           this.showAnswerPart1(val)
@@ -355,10 +355,10 @@ methods: {
           const params = new URLSearchParams();
           let y1 =val
           y1 =this.transformPython(y1)
-          y1 = y1.replace(',',',x,')
-          y1 = y1.replace('lIm','lim')
-          y1 =y1.replace('lim[','Limit(');
-          y1 = y1.replace(']',').doit()')
+          y1 = y1.replace(/,/g,',x,')
+          y1 = y1.replace(/lIm/g,'lim')
+          y1 =y1.replace(/lim[/g,'Limit(');
+          y1 = y1.replace(/]/g,').doit()')
           y1 = y1.replace(/∞/g,"S.Infinity")
           this.showAnswerPart1(`Calculating...`)
           this.showAnswerPart1(val)
