@@ -1,5 +1,6 @@
 
 
+
 <template>
   <div >
     <div  class='container' >
@@ -62,7 +63,7 @@
 
                     <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText('∫ [    ]')" >∫[x,y]</button> 
                     <button  v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="solve">Solve</button>
-                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText4('lim[  ]')">lim</button>
+                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText4('lim[   ]')">lim</button>
                    <button  v-bind:class="{ control: !this.$store.state.count, control2:this.$store.state.count}" v-on:mousedown.prevent="cancelText" v-on:dblclick.prevent="cancelEv">
                         <span class="material-icons " >
                             backspace
@@ -334,7 +335,6 @@ methods: {
           y1 = y1.replace('[',',(x,')
           y1 = y1.replace('∫','Integral(')
           y1 = y1.replace(']',')).doit()')
-
           //console.log(y1)
           this.showAnswerPart1(`Calculating...`)
           this.showAnswerPart1(val)
@@ -345,7 +345,7 @@ methods: {
                 this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
             else {
             let r  = response.data
-            //r = math.round(r,7)
+            //r = math.round(r,5)
             this.showAnswerPart2(r)
             }
             }).catch((err) => {
@@ -359,7 +359,6 @@ methods: {
           y1 = y1.replace(',',',x,')
           y1 =y1.replace('lim[','Limit(');
           y1 = y1.replace(']',').doit()')
-
           y1 = y1.replace(/∞/g,"S.Infinity")
           this.showAnswerPart1(`Calculating...`)
           this.showAnswerPart1(val)
@@ -367,7 +366,7 @@ methods: {
             this.axios.post("https://flaskbro.herokuapp.com/python",y1)
             .then(response => {
             if (response.data === "Couldn't regonise problem or there are no solutions, try again") {this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
-            else if(response.data==='∞') {this.showAnswerPart2(response.data)}
+            if(response.data==='∞') {this.showAnswerPart2(response.data)}
             else {
             let r  = response.data
             //r = math.round(r,5)
@@ -454,7 +453,8 @@ methods: {
         a =a.replace(')|',')')
         a=a.replace('|(','Abs(')
         a =a.replace(')|',')')
-        a = a.replace(/lIm/g, 'lim')
+        a = a.replace('lIm','lim')
+
         //a = a.replace(/logtegral/g,'Integral')
         //a = a.replace(/Intmath.egral/g,'Integral')
         //a = a.replace(/Trumath.e/g,'True')
