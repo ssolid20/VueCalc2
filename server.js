@@ -1,4 +1,4 @@
-
+/*
 let ex = require('express');
 let app = ex();
 var Algebrite = require('algebrite')
@@ -11,13 +11,12 @@ app.use(compression());
 app.use(helmet());
 app.use(ex.json())
 app.listen(4000);
-/*app.use(ex.static(path.join(__dirname, 'dist')));
+app.use(ex.static(path.join(__dirname, 'dist')));
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});*/
+});
 //var dataString = '';
 //process.env.PORT || 5000;
-/*
 app.use(ex.urlencoded({ extended: false }));
 app.post('/', (req, res) => {
     let x = Object.keys(req.body).toString()
@@ -40,7 +39,7 @@ app.post('/', (req, res) => {
     py.stdin.end();
 })
 https://github.com/davidedc/Algebrite/tree/51d40342210d7b4dc574bc1a27fcf28613eb624c
-*/
+
 app.use(ex.urlencoded({ extended: false }));
 app.post('/', (req, res) => {
     let x = Object.keys(req.body).toString()
@@ -51,4 +50,4 @@ app.post('/', (req, res) => {
     res.json(dataString)
     res.end()
 
-})
+})*/
