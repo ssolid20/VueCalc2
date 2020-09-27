@@ -22,15 +22,20 @@ const store = new Vuex.Store({
     print:'print',
     output:'output',
     clean: false,
+    addDeg:true
   },
   mutations: {
     increment (state) {
       state.count=!state.count;
       if (state.count === false) { state.icon = 'nights_stay'; state.print='print';state.output='output';state.clean=false}
       else{ state.icon='wb_sunny';state.print='print1';state.output='output1';state.clean=true}
+    },
+    changeAngleMuserment(state) {
+        state.addDeg=!state.addDeg;
     }
   }
 })
+
 
 new Vue({
   store:store,
