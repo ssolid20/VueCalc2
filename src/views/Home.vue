@@ -396,7 +396,6 @@ methods: {
         let r= this.$refs.input.value
         let c =r 
         let u='';
-        console.log(r)
         if (r == '') {}
         else if (r.includes('∫')) {this.calcIntegral(r)}
         else if (r.includes('lim')) {this.calcLimit(r)}
@@ -440,23 +439,7 @@ methods: {
         }
        }
       },//Integral(x^2 ,(x,0,2)).doit()
-      transformAngle:function(val){
-        let r = val;
-        r = r.replace("cos(",'cos(deg ')
-        r = r.replace("cos(",'cos(deg ')
-        r = r.replace("cos(",'cos(deg ')
-        r = r.replace("sin(",'sin(deg ')
-        r = r.replace("sin(",'sin(deg ')
-        r = r.replace("sin(",'sin(deg ')
-        r = r.replace("tan(",'tan(deg ')
-        r = r.replace("tan(",'tan(deg ')
-        r = r.replace("tan(",'tan(deg ')
 
-
-
-
-        return r
-      },
       transformPython:function(val) {
         let a =val
         a = a.replace(/i/g,'I')
@@ -537,7 +520,6 @@ methods: {
             if (r.includes('tan{')) {r = r.replace(/tan{/g ,"tan( "); r = r.replace(/}/g,")")}
 
             }
-        console.log(r)
         if (r.includes('π'))  {
             r = r.replace(/π/g,'pi')
             }
@@ -562,7 +544,6 @@ methods: {
         if (r.includes('{')) {r= r.replace(/{/g,'factorial(')}
         if (r.includes('}!')) {r =r.replace(/}!/g,')')}
         
-        console.log(r)
         return r
       },
       transformBack:function(val) {
