@@ -34,7 +34,7 @@
                     <button id="special4"  v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="special5" >sin(x)</button>
                     <button id="special5"  v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="special6" >cos(x)</button>
                     <button id="special6"  v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="special7" > tan(x)</button>
-                   <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText('{}!')" >!</button>
+                   <button id="special12"  v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="special12" >!</button>
 
                    <!-- <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText('∞')">∞</button>  -->                 
 
@@ -51,8 +51,8 @@
                     <button   v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="putText5('log( ,10)')" >log(x)</button>
                     <button  v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="deriv">dy/dx</button>
 
-                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText('∞')">∞</button>                        
-
+                   <button id='delete' v-bind:class="{ control: !this.$store.state.count, control2:this.$store.state.count}"  v-on:mousedown.prevent="cancelEv">C
+                    </button>
                </div>
                 <div class="b1 row">
                     <button v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  v-on:mousedown.prevent="putText('.')" >.</button>
@@ -61,10 +61,10 @@
                   <button id ="special7" v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  v-on:mousedown.prevent="special3"  ><</button>             
                     <button id ="special8" v-bind:class="{ int: !this.$store.state.count, int2:this.$store.state.count}"  v-on:mousedown.prevent="special4"  >></button>
 
-                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText('∫ [ ]')" >∫[x,y]</button> 
+                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText('∫ ')" >∫[x,y]</button> 
                     <button  v-bind:class="{ calc: !this.$store.state.count, calc2:this.$store.state.count}" v-on:mousedown.prevent="solve">Solve</button>
-                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText4('lim[ ]')">lim</button>
-                   <button  v-bind:class="{ control: !this.$store.state.count, control2:this.$store.state.count}" v-on:mousedown.prevent="cancelText" v-on:dblclick.prevent="cancelEv">
+                    <button v-bind:class="{ special: !this.$store.state.count, control2 :this.$store.state.count}" v-on:mousedown.prevent="putText4('lim[   ')">lim</button>
+                   <button  v-bind:class="{ control: !this.$store.state.count, control2:this.$store.state.count}" v-on:mousedown.prevent="cancelText" >
                         <span class="material-icons " >
                             backspace
                         </span>
@@ -79,7 +79,8 @@
                     </button>
                     <button  v-bind:class="{ control: !this.$store.state.count, control2:this.$store.state.count}" v-on:mousedown.prevent="chColor" > 
                         <span class="material-icons">
-                        clear_all
+                       clear_all
+
 
                         </span>
                     </button>
@@ -141,6 +142,7 @@ export default {
         output:this.$store.state.output
       }
   },
+
   mounted(){
     if(window.innerWidth <= 600){
         document.getElementById("input2").setAttribute("readonly", "true");
@@ -198,15 +200,15 @@ methods: {
         else{this.putText('⩾')}
     },
     special5:function(){
-        if (this.changeButtons===false) {this.putText4('sin( deg)')}
+        if (this.changeButtons===false) {this.putText4('sin{ }')}
         else{this.putText5('asin()')}
     },
     special6:function(){
-        if (this.changeButtons===false) {this.putText4('cos( deg)')}
+        if (this.changeButtons===false) {this.putText4('cos{ }')}
         else{this.putText5('acos()')}
     },
     special7:function(){
-        if (this.changeButtons===false) {this.putText4('tan( deg)')}
+        if (this.changeButtons===false) {this.putText4('tan{ }')}
         else{this.putText5('atan()')}
     },
     special10:function() {
@@ -216,6 +218,10 @@ methods: {
     special11:function(){
         if (this.changeButtons===false) {this.putText('e')}
         else{this.putText2('|()|')}
+    },
+    special12:function(){
+        if (this.changeButtons===false) {this.putText('{}!')}
+        else{this.putText2('∞')}
     },
     chbuttons:function(){
         if (this.changeButtons===false) {
@@ -229,6 +235,8 @@ methods: {
             let x6 = document.querySelector('#special6')
             let x7 = document.querySelector('#special10')
             let x8 = document.querySelector('#special11')
+            let x9=document.querySelector('#special12');
+
             x.innerText= '['
             x1.innerText= ']'
             x2.innerText='⩽'
@@ -237,7 +245,9 @@ methods: {
             x5.innerText='acos(x)'
             x6.innerText='atan(x)'
             x7.innerText='i';
-            x8.innerText='||'
+            x8.innerText='abs'
+            x9.innerText='∞'
+
         }
         else {
             this.changeButtons=false
@@ -250,6 +260,7 @@ methods: {
             let x6 = document.querySelector('#special6')
             let x7 = document.querySelector('#special10')
             let x8 = document.querySelector('#special11')
+            let x9=document.querySelector('#special12');
             x.innerText= '('
             x1.innerText= ')'
             x2.innerText='<'
@@ -258,7 +269,8 @@ methods: {
             x5.innerText='cos(x)'
             x6.innerText='tan(x)'
             x7.innerText='π'
-            x8.innerText='e'
+            x8.innerText='e';
+            x9.innerText="!"
         }
     },
     solve :function(){
@@ -320,6 +332,7 @@ methods: {
             this.showAnswerPart1(r)
             let u = "Couldn't regonise problem or there are no solutions, try again"
             this.showAnswerPart2(u)
+
         }*/
        
       },
@@ -327,12 +340,16 @@ methods: {
           const params = new URLSearchParams();
           const chatMessages = document.querySelector('#showtime');
           let y1 =val
+          console.log(y1)
+          if (!y1.includes("[")) {
+              y1+= "[]";
+          }
           //Integral(x^2 ,(x,0,2)).doit()
           y1 = this.transformPython(y1)
           y1 = y1.replace('[',',(x,')
           y1 = y1.replace('∫','Integral(')
           y1 = y1.replace(']',')).doit()')
-          //console.log(y1)
+          console.log(y1)
           this.showAnswerPart1(`Calculating...`)
           this.showAnswerPart1(val)
           params.append(y1,'value');
@@ -340,7 +357,6 @@ methods: {
             .then(response => {
             if (response.data === "Couldn't regonise problem or there are no solutions, try again") {
                 this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
-            else if(response.data==='∞') {this.showAnswerPart2(response.data)}
             else {
             let r  = response.data
             //r = math.round(r,5)
@@ -364,10 +380,10 @@ methods: {
             this.axios.post("https://flaskbro.herokuapp.com/python",y1)
             .then(response => {
             if (response.data === "Couldn't regonise problem or there are no solutions, try again") {this.showAnswerPart3("Couldn't regonise problem or there are no solutions, try again")}
-            else if(response.data==='∞') {this.showAnswerPart2(response.data)}
+            if(response.data==='∞') {this.showAnswerPart2(response.data)}
             else {
             let r  = response.data
-           // r = math.round(r,5)
+            //r = math.round(r,5)
             this.showAnswerPart2(r)}
         }).catch((err) => {
             console.log(err)})
@@ -380,6 +396,7 @@ methods: {
         let r= this.$refs.input.value
         let c =r 
         let u='';
+        console.log(r)
         if (r == '') {}
         else if (r.includes('∫')) {this.calcIntegral(r)}
         else if (r.includes('lim')) {this.calcLimit(r)}
@@ -397,6 +414,7 @@ methods: {
         }
         catch(err) {u = "Couldn't regonise problem or there are no solutions, try again";
             this.showAnswerPart1(c)
+
             this.$refs.input.value=''
             var node1 = document.createElement("LI"); 
             node1.id='error' 
@@ -422,6 +440,23 @@ methods: {
         }
        }
       },//Integral(x^2 ,(x,0,2)).doit()
+      transformAngle:function(val){
+        let r = val;
+        r = r.replace("cos(",'cos(deg ')
+        r = r.replace("cos(",'cos(deg ')
+        r = r.replace("cos(",'cos(deg ')
+        r = r.replace("sin(",'sin(deg ')
+        r = r.replace("sin(",'sin(deg ')
+        r = r.replace("sin(",'sin(deg ')
+        r = r.replace("tan(",'tan(deg ')
+        r = r.replace("tan(",'tan(deg ')
+        r = r.replace("tan(",'tan(deg ')
+
+
+
+
+        return r
+      },
       transformPython:function(val) {
         let a =val
         a = a.replace(/i/g,'I')
@@ -451,6 +486,7 @@ methods: {
         a=a.replace('|(','Abs(')
         a =a.replace(')|',')')
         a = a.replace('lIm','lim')
+
         //a = a.replace(/logtegral/g,'Integral')
         //a = a.replace(/Intmath.egral/g,'Integral')
         //a = a.replace(/Trumath.e/g,'True')
@@ -474,6 +510,7 @@ methods: {
         r =r.replace(')|',')')
         r=r.replace('|(','abs(')
         r =r.replace(')|',')')
+
         
         return r
       },
@@ -485,6 +522,22 @@ methods: {
         r =r.replace(')|',')')
         r=r.replace('|(','abs(')
         r =r.replace(')|',')')
+        if (this.$store.state.addDeg===true){
+            if (r.includes('sin{') || r.includes('cos{') || r.includes('tan{')){
+                        r = r.replace(/sin{/g ,"sin(deg ");
+                        r = r.replace(/cos{/g ,"cos(deg ");
+                        r = r.replace(/tan{/g ,"tan(deg ");
+                        r = r.replace(/}/g,")")
+            }
+
+        }
+        else {
+            if (r.includes('sin{')) {r = r.replace(/sin{/g ,"sin( "); r = r.replace(/}/g,")")}
+            if (r.includes('cos{')) {r = r.replace(/cos{/g ,"cos( "); r = r.replace(/}/g,")")}
+            if (r.includes('tan{')) {r = r.replace(/tan{/g ,"tan( "); r = r.replace(/}/g,")")}
+
+            }
+        console.log(r)
         if (r.includes('π'))  {
             r = r.replace(/π/g,'pi')
             }
@@ -494,18 +547,22 @@ methods: {
         if (r.includes('In')) {
             r = r.replace(/In/g,'log')
             }
-        if (r.includes('acos')) {
-            r = r.replace(/acos/g,'(180/pi)*acos')
+        if (this.$store.state.addDeg===true){
+            if (r.includes('acos')) {
+                r = r.replace(/acos/g,'(180/pi)*acos')
+                }
+            if (r.includes('asin')) {
+                r = r.replace(/asin/g,'(180/pi)*asin')
+                }
+            if (r.includes('atan')) {
+                r = r.replace(/atan/g,'(180/pi)*atan')
             }
-        if (r.includes('asin')) {
-            r = r.replace(/asin/g,'(180/pi)*asin')
-            }
-        if (r.includes('atan')) {
-            r = r.replace(/atan/g,'(180/pi)*atan')
         }
+
         if (r.includes('{')) {r= r.replace(/{/g,'factorial(')}
         if (r.includes('}!')) {r =r.replace(/}!/g,')')}
         
+        console.log(r)
         return r
       },
       transformBack:function(val) {
@@ -543,6 +600,7 @@ methods: {
                 } 
             document.getElementById("messages").appendChild(node);
             chatMessages.scrollTop = chatMessages.scrollHeight;
+
       },
       showAnswerPart2:function(val2){
             const chatMessages = document.querySelector('#showtime');
@@ -600,6 +658,7 @@ methods: {
             document.getElementById("messages").appendChild(node);
             chatMessages.scrollTop = chatMessages.scrollHeight;
       },
+
       putText:function(val) {
             //this.counter +=1
             let i= this.$refs.input
@@ -702,6 +761,7 @@ methods: {
             this.caret=caretPos
             this.$refs.input.setSelectionRange(y.length,y.length)
         },
+
         cancelEv:function() {
             this.$refs.input.value= "";
         }, 
@@ -736,6 +796,7 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -748,6 +809,7 @@ methods: {
     color: #333;
     background: #eaeff6;
     width: 11%;
+
 }
 .int2{
     display: inline-block;
@@ -768,6 +830,8 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
+
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -806,6 +870,8 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
+
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -817,6 +883,7 @@ methods: {
     border-bottom: 1px solid #738dc3;
     width: 11%;
 }
+
 .control2{
     display: inline-block;
     font-weight: 400;
@@ -841,6 +908,7 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -879,6 +947,8 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
+
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -916,6 +986,7 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -953,6 +1024,7 @@ methods: {
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -966,6 +1038,7 @@ methods: {
     background: #eaeff6;
     width: 11%;
   }
+
 .b1{text-align: center;}
 .buttons{background-color: #c7d2e7;}
 .buttons1{background-color: #1A202C;}
@@ -1003,6 +1076,7 @@ methods: {
     border-right:2px solid #adc1e2 ;
     /*border-bottom: 2px solid #adc1e2;*/
     border-bottom: 2px solid #adc1e2;
+
     border-radius: 3px;
     width: 100%; 
 }
@@ -1038,12 +1112,14 @@ methods: {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
     background-color: white;
     margin-left:0 auto;
     margin-right:0 auto;
     border-radius: 6px; 
     text-align: center;
 }
+
 .input3{
     display: block;
     width: 100%;
@@ -1058,6 +1134,7 @@ methods: {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
     background-color:#272727 ;
     margin-left:0 auto;
     margin-right:0 auto;
@@ -1065,14 +1142,16 @@ methods: {
     border-color: aliceblue;
     text-align: center;   
 }
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 767px) {
+
     html{
         font-size: 16px;
     }
     .int {
         margin-top: 0.1%;
         border-bottom: 1px solid #738dc3;
-       margin-right: 0.1%;
+        margin-right: 0.1%;
         margin-bottom: 0.1%;
         border-radius: 8px;
         display: flex;
@@ -1106,6 +1185,7 @@ methods: {
         font-size: 60%;
         width: 11%;
     }
+
     .special{
         border:0px;
         margin-bottom: 0.1%;
@@ -1125,16 +1205,19 @@ methods: {
         margin-top: 0.1%;
         border-bottom: 1px solid #738dc3;
         border-radius: 8px;
+        font-size: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 60%;
         width: 11%;
+
     }
+
     .container {
         padding-right:0%;
         padding-left: 0%;
     }
+
     .app2{
         width: 100% ;
         display: flex;
@@ -1147,7 +1230,9 @@ methods: {
         flex-direction: column;
         height: 94.5vh;    
         border-bottom: 0;
+
     }
+
     .showtime{
         flex-grow: 3;
         height: 242px;
@@ -1158,3 +1243,6 @@ methods: {
     }
 }
 </style>
+
+
+
