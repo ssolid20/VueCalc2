@@ -6,6 +6,7 @@
         <button v-bind:class="{navHead: !this.$store.state.count, navHead2:this.$store.state.count}" v-on:click="third"> Plots</button>
         <button v-bind:class="{navHead: !this.$store.state.count, navHead2:this.$store.state.count}" v-on:click="home"> Calculator</button>
         <button v-bind:class="{navHead: !this.$store.state.count, navHead2:this.$store.state.count}" v-on:click="about"> About</button>
+        <button v-bind:class="{navHead: !this.$store.state.count, navHead2:this.$store.state.count}" v-on:click="degorrad">{{this.angle}}</button>
         <button v-bind:class="{navHead: !this.$store.state.count, navHead2:this.$store.state.count}"  v-on:click="changeColor"> 
             <span class="material-icons">{{this.$store.state.icon}}</span>
         </button>
@@ -45,6 +46,8 @@ export default {
           percent:'50%',
           comptowrite:'Calculator',
           navAppear:false,
+          changeToRad:true,
+          angle:"deg"
       }
   },
   mounted(){
@@ -54,6 +57,22 @@ export default {
     }
   },
   methods:{
+    degorrad:function(){
+        if (this.changeToRad === true) {
+            this.changeToRad=false;
+            this.angle = 'rad';
+            this.$store.commit('changeAngleMuserment')
+            this.closeNav()
+
+        }
+        else {
+            this.changeToRad=true;
+            this.angle = 'deg';  
+            this.$store.commit('changeAngleMuserment') 
+            this.closeNav()
+
+        }
+    },
     openNav:function(){
         //if (this.navAppear===false) {
            // this.navAppear=true;
