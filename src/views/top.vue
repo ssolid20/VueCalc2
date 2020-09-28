@@ -47,7 +47,7 @@ export default {
           comptowrite:'Calculator',
           navAppear:false,
           changeToRad:true,
-          angle:"deg"
+          angle:"DEG"
       }
   },
   mounted(){
@@ -60,14 +60,14 @@ export default {
     degorrad:function(){
         if (this.changeToRad === true) {
             this.changeToRad=false;
-            this.angle = 'rad';
+            this.angle = 'RAD';
             this.$store.commit('changeAngleMuserment')
             this.closeNav()
 
         }
         else {
             this.changeToRad=true;
-            this.angle = 'deg';  
+            this.angle = 'DEG';  
             this.$store.commit('changeAngleMuserment') 
             this.closeNav()
 
